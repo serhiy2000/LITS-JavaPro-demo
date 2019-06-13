@@ -22,19 +22,18 @@ public class AlivePersonService implements PersonService {
 
     @Override
     public PersonDto getById(Integer id) {
-        return personMapper.toDto(personDataRepository.findOne(id));
+        return personMapper.toDto(personDataRepository.findOneById(id));
     }
 
     @Override
     public List<PersonDto> getAllPersons (){
         return null;
-//                personMapper.toDto(personDataRepository.findAll());
+//                personMapper.toEntity(personDataRepository.findAll());
     }
 
     @Override
     public PersonDto save(PersonDto personDto) {
         Person entity = personMapper.toEntity(personDto);
-
         return personMapper.toDto(personDataRepository.save(entity));
     }
 }

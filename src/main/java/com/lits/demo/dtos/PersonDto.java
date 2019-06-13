@@ -4,6 +4,15 @@ public class PersonDto {
     private Integer Id;
     private String username;
     private Integer age;
+    private boolean dead;
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
 
     public Integer getAge() {
         return age;

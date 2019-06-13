@@ -9,16 +9,25 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Integer Id;
+    private Integer id;
     private String username;
     private Integer age;
+    private boolean dead;
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getUsername() {

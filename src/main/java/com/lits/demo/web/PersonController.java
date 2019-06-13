@@ -1,6 +1,7 @@
 package com.lits.demo.web;
 
 import com.lits.demo.dtos.PersonDto;
+import com.lits.demo.entity.Person;
 import com.lits.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController(value = "/app")
-
+@RestController(value = "/api")
 public class PersonController {
 
     @Autowired
@@ -25,14 +25,19 @@ public class PersonController {
         return alivePersonService.getAllPersons();
     }
 
+//    @GetMapping (value = "/user?id")
+//    public PersonDto getPersonById (@RequestParam Integer id){
+//        return alivePersonService.getById(id);
+//    }
+
+    @GetMapping(value = "/user/{id}")
+    public PersonDto getPersonById(@PathVariable Integer id) {
+        return alivePersonService.getById(id);
+    }
+
     @PostMapping
     public PersonDto savePerson (@RequestBody PersonDto person){
         return alivePersonService.save(person);
-    }
-
-    @GetMapping (value = "/user?id")
-    public PersonDto getPersonById (@RequestParam Integer id){
-        return alivePersonService.getById(id);
     }
 
 }
