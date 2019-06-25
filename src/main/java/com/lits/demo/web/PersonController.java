@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController(value = "/api")
+@RestController
+@RequestMapping(value = "/api")
 public class PersonController {
 
     @Autowired
@@ -20,11 +21,12 @@ public class PersonController {
     @Qualifier (value = "dead")
     private PersonService deadPersonService;
 
-    @GetMapping
-    public List<PersonDto> getPersonbyId (){
-        return alivePersonService.getAllPersons();
+    @GetMapping (value = "/user")
+    public List<PersonDto> getAllPersons (){
+        return null;
+//        alivePersonService.getAllPersons();
     }
-
+//
 //    @GetMapping (value = "/user?id")
 //    public PersonDto getPersonById (@RequestParam Integer id){
 //        return alivePersonService.getById(id);

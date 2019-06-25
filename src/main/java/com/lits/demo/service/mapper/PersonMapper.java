@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonMapper {
 
-    public Person toEntity (PersonDto personDto){
+    public Person toEntity(PersonDto personDto) {
         Person person = new Person();
         person.setUsername(personDto.getUsername());
         person.setAge(personDto.getAge());
@@ -16,7 +16,7 @@ public class PersonMapper {
         return person;
     }
 
-    public PersonDto toDto (Person person){
+    public PersonDto toDto(Person person) {
         PersonDto personDto = new PersonDto();
         personDto.setUsername(person.getUsername());
         personDto.setAge(person.getAge());
@@ -25,3 +25,4 @@ public class PersonMapper {
         return personDto;
     }
 }
+

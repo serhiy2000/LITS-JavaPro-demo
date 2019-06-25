@@ -22,7 +22,7 @@ public class DeadPersonService implements PersonService {
     }
 
     @Override
-    public List<PersonDto> getAllPersons (){
+    public List<Person> getAllPersons (){
         return null;
 
     }

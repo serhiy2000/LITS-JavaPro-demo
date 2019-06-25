@@ -26,9 +26,8 @@ public class AlivePersonService implements PersonService {
     }
 
     @Override
-    public List<PersonDto> getAllPersons (){
-        return null;
-//                personMapper.toEntity(personDataRepository.findAll());
+    public List<Person> getAllPersons (){
+        return personDataRepository.findAll();
     }
 
     @Override
@@ -36,4 +35,5 @@ public class AlivePersonService implements PersonService {
         Person entity = personMapper.toEntity(personDto);
         return personMapper.toDto(personDataRepository.save(entity));
     }
+
 }

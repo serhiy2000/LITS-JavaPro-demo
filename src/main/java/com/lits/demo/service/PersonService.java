@@ -9,7 +9,7 @@ public interface PersonService {
 
     PersonDto getById (Integer Id);
 
-    List<PersonDto> getAllPersons();
+    List<Person> getAllPersons();
 
     PersonDto save (PersonDto personDto);
 }
