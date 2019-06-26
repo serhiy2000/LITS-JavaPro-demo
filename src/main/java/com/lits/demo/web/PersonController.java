@@ -39,6 +39,12 @@ public class PersonController {
 
     @PostMapping
     public PersonDto savePerson (@RequestBody PersonDto person){
+
+//        Person person = Person.builder()   -   тут описано як працює lombok builder!
+//                .age(12)
+//                .username("serfgf")
+//                .dead(false);
+
         return alivePersonService.save(person);
     }
 

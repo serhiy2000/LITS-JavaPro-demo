@@ -5,12 +5,14 @@ import com.lits.demo.entity.Person;
 import com.lits.demo.repository.PersonDataRepository;
 import com.lits.demo.service.PersonService;
 import com.lits.demo.service.mapper.PersonMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service ("alive")
+@Slf4j
 
 public class AlivePersonService implements PersonService {
 
@@ -28,6 +30,12 @@ public class AlivePersonService implements PersonService {
     @Override
     public List<Person> getAllPersons (){
         return personDataRepository.findAll();
+
+
+//        if () {    - тут написано як працює логер від лобмоку
+//            throw new RuntimeException("User not found");
+//            log.error("User not found");
+//        }
     }
 
     @Override
