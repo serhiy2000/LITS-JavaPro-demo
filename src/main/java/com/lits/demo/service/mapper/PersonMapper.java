@@ -2,9 +2,11 @@ package com.lits.demo.service.mapper;
 
 import com.lits.demo.dtos.PersonDto;
 import com.lits.demo.entity.Person;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
+@Data
 public class PersonMapper {
 
     public Person toEntity(PersonDto personDto) {
