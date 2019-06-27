@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping (value = "/api")
 public class AuthController {
 
-    @PostMapping (path = "auth");
-    public ResponseEntity <?> login (){
-
-    }
-
-    @PostMapping
-    public UserEntity savePerson (@RequestBody UserEntity user){
-
-        return UserServiceImpl.save(user);
-    }
+//    @PostMapping (path = "auth");
+//    public ResponseEntity <?> login (){
+//
+//    }
+//
+//    @PostMapping
+//    public UserEntity savePerson (@RequestBody UserEntity user){
+//
+//        return UserServiceImpl.save(user);
+//    }
 
 }
