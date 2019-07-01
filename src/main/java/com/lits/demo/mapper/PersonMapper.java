@@ -1,4 +1,4 @@
-package com.lits.demo.service.mapper;
+package com.lits.demo.mapper;
 
 import com.lits.demo.dtos.PersonDto;
 import com.lits.demo.entity.Person;

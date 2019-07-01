@@ -1,10 +1,10 @@
-package com.lits.demo.service.impl;
+package com.lits.demo.implementation;
 
 import com.lits.demo.dtos.PersonDto;
 import com.lits.demo.entity.Person;
 import com.lits.demo.repository.PersonDataRepository;
 import com.lits.demo.service.PersonService;
-import com.lits.demo.service.mapper.PersonMapper;
+import com.lits.demo.mapper.PersonMapper;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

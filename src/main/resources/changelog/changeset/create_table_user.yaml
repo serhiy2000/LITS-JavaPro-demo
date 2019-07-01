@@ -20,7 +20,7 @@ databaseChangeLog:
                     nullable: false
                     unique: true
               - column:
-                  name: age
-                  type: int
+                  name: password
+                  type: varchar (255)
                   constraints:
                     nullable: false

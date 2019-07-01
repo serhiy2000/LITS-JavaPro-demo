@@ -14,8 +14,8 @@ public class UserEntity {
         @Column(name = "id", unique = true, nullable = false)
         private long id;
 
-        @Column(name = "email", unique = true)
-        private String email;
+        @Column(name = "username", unique = true)
+        private String username;
 
         @Column(name = "password")
         private String password;
