@@ -48,6 +48,7 @@ public class DemoApplication extends Application implements ApplicationRunner {
 		user.setUsername("loco");
 //		user.setPassword("$2a$10$xIqXZRbKo96Y/h1uZa1eAuo53cNHIJffo5lqLsnLdhzfSpVB/XPoq");
 		user.setPassword(passwordEncoder.encode("123"));
+		user.setRole("ROLE_ADMIN");
 		userDataRepository.save(user);
 	}
 }

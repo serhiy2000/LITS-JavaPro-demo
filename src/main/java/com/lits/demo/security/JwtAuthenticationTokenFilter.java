@@ -30,10 +30,15 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 
-        Long accountId =  Optional.ofNullable(request.getHeader(HttpHeaders.AUTHORIZATION)).filter(this::containsBearerToken)
-                .map(token -> token.substring(BEARER_TYPE.length() + 1)).map(token -> tokenService.parseToken(token)).orElse(null);
+        Long accountId =  Optional.ofNullable(request.getHeader(HttpHeaders.AUTHORIZATION))
+                .filter(this::containsBearerToken)
+                .map(token -> token.substring(BEARER_TYPE.length() + 1))
+                .map(token -> tokenService.parseToken(token))
+                .orElse(null);
         log.debug("Exception in class JwtAuthenticationTokenFilter (doFilterInternal)");
         logger.info("checking authentication for user " + accountId);
+
+        System.out.println("long account ID(by JwtAuthenticationTokenFilter  = "+accountId); // here is a probles. accountId is null here.
 
         if (accountId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             JwtUser jwtUser = JwtUserFactory.create(accountId, "ROLE_ADMIN");
@@ -46,6 +51,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
 
         else {
+
             System.out.println("Problem tyt");
         }
 

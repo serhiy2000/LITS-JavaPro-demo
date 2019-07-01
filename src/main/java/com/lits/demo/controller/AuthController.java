@@ -18,8 +18,11 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping(value = "/login")
-    @ApiOperation("auth")
+//    @ApiOperation("auth")
     public ResponseEntity<?> auth(@RequestBody UserEntity user){
+
+        System.out.println("user.getUsername() from AuthController (the same as in POST command): "+user.getUsername()); // here works. userName = is the same as in POST request
+
         return ResponseEntity.ok(authService.auth(user.getUsername(), user.getPassword()));
     }
 
@@ -30,20 +33,19 @@ public class AuthController {
 //        return UserServiceImpl.save(user);
 //    }
 //}
-//
-//@RestController
+
 //@RequestMapping (value = "/api/users")
 //public class UserController {
 //
 //    @PostMapping
-//    public ResponseEntity <?> singup (){
+//    public ResponseEntity<?> signup() {
 //
-//    }
-//
-//    @PostMapping
-//    public UserEntity savePerson (@RequestBody UserEntity user){
-//
-//        return UserServiceImpl.save(user);
 //    }
 
+//    @PostMapping
+//    public UserEntity saveUser(@RequestBody UserEntity user) {
+//        UserServiceImpl.save(user);
+//        return user;
+//    }
+//}
 }

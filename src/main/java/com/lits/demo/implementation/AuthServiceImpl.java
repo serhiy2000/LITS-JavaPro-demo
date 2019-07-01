@@ -34,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserEntity user = userDataRepository.findOneByUsername(username);
+
         return tokenService.createToken(user.getId());
     }
 }

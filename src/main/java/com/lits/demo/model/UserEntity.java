@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class UserEntity {
 
         @Id
-        @GeneratedValue(strategy= GenerationType.IDENTITY)
+        @GeneratedValue(strategy= GenerationType.AUTO)
         @Column(name = "id", unique = true, nullable = false)
         private long id;
 
@@ -20,5 +20,7 @@ public class UserEntity {
         @Column(name = "password")
         private String password;
 
+        @Column(name = "role")
+        private String role;
 
 }

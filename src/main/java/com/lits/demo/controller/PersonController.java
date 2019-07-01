@@ -1,4 +1,4 @@
-package com.lits.demo.web;
+package com.lits.demo.controller;
 
 import com.lits.demo.dtos.PersonDto;
 import com.lits.demo.entity.Person;
