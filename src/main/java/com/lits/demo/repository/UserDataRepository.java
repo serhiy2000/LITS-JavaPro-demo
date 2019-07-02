@@ -1,9 +1,9 @@
 package com.lits.demo.repository;
 
-import com.lits.demo.model.UserEntity;
+import com.lits.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserDataRepository extends JpaRepository <UserEntity, Integer> {
+public interface UserDataRepository extends JpaRepository <User, Integer> {
 
-    UserEntity findOneByUsername (String username);
+    User findOneByUsername (String username);
 }

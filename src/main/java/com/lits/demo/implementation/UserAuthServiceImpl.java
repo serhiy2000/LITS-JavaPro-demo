@@ -1,8 +1,8 @@
 package com.lits.demo.implementation;
 
-import com.lits.demo.model.UserEntity;
+import com.lits.demo.model.User;
 import com.lits.demo.repository.UserDataRepository;
-import com.lits.demo.service.AuthService;
+import com.lits.demo.service.UserAuthService;
 import com.lits.demo.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class AuthServiceImpl implements AuthService {
+public class UserAuthServiceImpl implements UserAuthService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -33,8 +33,9 @@ public class AuthServiceImpl implements AuthService {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserEntity user = userDataRepository.findOneByUsername(username);
+        User user = userDataRepository.findOneByUsername(username);
 
+        System.out.println("message from authServiceImpl");
         return tokenService.createToken(user.getId());
     }
 }

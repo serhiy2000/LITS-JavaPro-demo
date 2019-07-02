@@ -1,10 +1,9 @@
 package com.lits.demo.implementation;
 
-import com.lits.demo.model.UserEntity;
+import com.lits.demo.model.User;
 import com.lits.demo.repository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,15 +20,15 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        UserEntity userEntity = userDataRepository.findOneByUsername(s);
-        if (Objects.isNull(userEntity)) {
+        User user = userDataRepository.findOneByUsername(s);
+        if (Objects.isNull(user)) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        System.out.println("userEntity from UserServiceImpl is "+userEntity);
-    return new User(userEntity.getUsername(),userEntity.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+        System.out.println("user from UserServiceImpl is "+ user);
+    return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
     }
 
-    public UserEntity save (UserEntity user){
+    public User save (User user){
         userDataRepository.save(user);
         return user;
     }

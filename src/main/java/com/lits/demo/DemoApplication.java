@@ -1,6 +1,6 @@
 package com.lits.demo;
 
-import com.lits.demo.model.UserEntity;
+import com.lits.demo.model.User;
 import com.lits.demo.repository.UserDataRepository;
 import io.swagger.jaxrs.config.BeanConfig;
 import javax.ws.rs.core.Application;
@@ -44,11 +44,11 @@ public class DemoApplication extends Application implements ApplicationRunner {
 	}
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		UserEntity user = new UserEntity();
+		User user = new User();
 		user.setUsername("loco");
 //		user.setPassword("$2a$10$xIqXZRbKo96Y/h1uZa1eAuo53cNHIJffo5lqLsnLdhzfSpVB/XPoq");
 		user.setPassword(passwordEncoder.encode("123"));
-		user.setRole("ROLE_ADMIN");
+		user.setRole("ADMIN");
 		userDataRepository.save(user);
 	}
 }

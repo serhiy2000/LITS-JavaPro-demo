@@ -41,7 +41,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         System.out.println("long account ID(by JwtAuthenticationTokenFilter  = "+accountId); // here is a probles. accountId is null here.
 
         if (accountId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            JwtUser jwtUser = JwtUserFactory.create(accountId, "ROLE_ADMIN");
+            JwtUser jwtUser = JwtUserFactory.create(accountId, "ADMIN");
 
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(jwtUser,
                     null, jwtUser.getAuthorities());
@@ -52,7 +52,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
         else {
 
-            System.out.println("Problem tyt");
+            System.out.println("Problem from JwtAuthenticationTokenFilter. account-ID from token is "+accountId);
         }
 
         chain.doFilter(request, response);
