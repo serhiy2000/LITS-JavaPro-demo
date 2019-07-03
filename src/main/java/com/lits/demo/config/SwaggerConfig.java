@@ -26,7 +26,7 @@ import java.util.List;
 @EnableSwagger2
 //@Import(springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration.class)
 @Slf4j
-public class SwaggerConfig {
+public class SwaggerConfig {  // in this class you can configure SWAGGER page at localhost:8080/swagger-ui.html
 //    public static final String AUTHORIZATION_HEADER = "Authorization";
 //    public static final String DEFAULT_INCLUDE_PATTERN = "/api/.*";
 
