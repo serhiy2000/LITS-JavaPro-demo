@@ -19,11 +19,11 @@ public class UserAuthController {
     @Autowired
     public UserAuthController(UserAuthService userAuthService){
         this.userAuthService = userAuthService;
-    }
+    } // проблема з токеном була у відсутності цього рядка. П.С. - розібратись - як воно працює!!!!
 
 
     @PostMapping(value = "/login")
-    @ApiOperation("auth")
+    @ApiOperation("auth") // -this is for swagger annotation
     public ResponseEntity<?> auth(@RequestBody User user){
 
         System.out.println("user.getUsername() from UserAuthController (the same as in POST command): "+user.getUsername()); // here works. userName = is the same as in POST request
@@ -35,7 +35,7 @@ public class UserAuthController {
 //    @PostMapping
 //    public User savePerson (@RequestBody User user){
 //
-//        return UserServiceImpl.save(user);
+//        return UserServiceImpl.savePersonToDataBase(user);
 //    }
 //}
 //
@@ -49,7 +49,7 @@ public class UserAuthController {
 
 //    @PostMapping
 //    public User saveUser(@RequestBody User user) {
-//        UserServiceImpl.save(user);
+//        UserServiceImpl.savePersonToDataBase(user);
 //        return user;
 //    }
 //}

@@ -2,6 +2,7 @@ package com.lits.demo.implementation;
 
 import com.lits.demo.dtos.PersonDto;
 import com.lits.demo.entity.Person;
+import com.lits.demo.mapper.PersonNotFoundException;
 import com.lits.demo.repository.PersonDataRepository;
 import com.lits.demo.service.PersonService;
 import com.lits.demo.mapper.PersonMapper;
@@ -22,24 +23,25 @@ public class AlivePersonService implements PersonService {
     @Autowired
     private PersonMapper personMapper;
 
-    @Override
+
     public PersonDto getById(Integer id) {
-        return personMapper.toDto(personDataRepository.findOneById(id));
+        Person personFoundById = personDataRepository.findOne(id);//.orElseThrow(()-> new PersonNotFoundException("User with Id "+"not found"));
+        return personMapper.toDto(personFoundById);
     }
-
-    @Override
+//
+////    @Override   // -доробити!!!!
     public List<Person> getAllPersons (){
-        return personDataRepository.findAll();
-
-
-//        if () {    - тут написано як працює логер від лобмоку
-//            throw new RuntimeException("User not found");
-//            log.error("User not found");
-//        }
+        return null; //personDataRepository.findAll();
+//
+////
+////        if () {    - тут написано як працює логер від лобмоку
+////            throw new RuntimeException("User not found");
+////            log.error("User not found");
+////        }
     }
+//
 
-    @Override
-    public PersonDto save(PersonDto personDto) {
+    public PersonDto savePersonToDataBase(PersonDto personDto) {
         Person entity = personMapper.toEntity(personDto);
         return personMapper.toDto(personDataRepository.save(entity));
     }

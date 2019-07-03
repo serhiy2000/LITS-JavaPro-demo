@@ -15,7 +15,7 @@ import java.util.List;
 @Service ("dead")
 @Slf4j
 @Data
-public class DeadPersonService implements PersonService {
+public class DeadPersonService {
 
     @Autowired
     private PersonDataRepository personDataRepository;
@@ -23,20 +23,19 @@ public class DeadPersonService implements PersonService {
     @Autowired
     private PersonMapper personMapper;
 
-    @Override
-    public PersonDto getById(Integer Id) {
+////    @Override
+//    public PersonDto getById(Integer Id) {
+//        return null;
+//    }
 
-        return null;
-    }
+////    @Override // - to be done
+//    public List<Person> getAllPersons (){
+//        return null;
+//
+//    }
 
-    @Override
-    public List<Person> getAllPersons (){
-        return null;
-
-    }
-
-    @Override
-
+//    @Override
+//
         public PersonDto save(PersonDto personDto) {
             Person entity = personMapper.toEntity(personDto) ;
 

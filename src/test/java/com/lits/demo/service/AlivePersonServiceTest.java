@@ -35,15 +35,15 @@ public class AlivePersonServiceTest {
         when(personDataRepositoryMock.save (person)).thenReturn(person);
 
         assertNotNull(
-        alivePersonService.save(personDto));
+        alivePersonService.savePersonToDataBase(personDto));
     }
 
     @Test
     public void shouldGetPerson(){
         Person person = new Person();
-        when(personDataRepositoryMock.findOneById(1)).thenReturn(person);
+        when(personDataRepositoryMock.findOne(1)).thenReturn(null);
         alivePersonService.getById(1);
-        verify(personDataRepositoryMock).findOneById(1);
+        verify(personDataRepositoryMock).findOne(1);
 
     }
 

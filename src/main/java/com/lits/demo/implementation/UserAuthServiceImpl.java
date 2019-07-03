@@ -33,7 +33,7 @@ public class UserAuthServiceImpl implements UserAuthService {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        User user = userDataRepository.findOneByUsername(username);
+        User user = userDataRepository.findOne(username);
 
         System.out.println("message from authServiceImpl");
         return tokenService.createToken(user.getId());

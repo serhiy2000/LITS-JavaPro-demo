@@ -1,0 +1,10 @@
+<context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+        com.musigma.esp2.configuration.AppConfig
+        com.musigma.esp2.configuration.WebSecurityConfiguration
+        com.musigma.esp2.configuration.PersistenceConfig
+        com.musigma.esp2.configuration.ACLConfig
+        com.musigma.esp2.configuration.SwaggerConfig
+    </param-value>
+</context-param>

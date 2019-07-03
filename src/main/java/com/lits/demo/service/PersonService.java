@@ -11,5 +11,5 @@ public interface PersonService {
 
     List<Person> getAllPersons();
 
-    PersonDto save (PersonDto personDto);
+    PersonDto savePersonToDataBase(PersonDto personDto);
 }

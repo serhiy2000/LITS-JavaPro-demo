@@ -2,9 +2,6 @@ package com.lits.demo.config;
 
 import com.lits.demo.security.JwtAuthenticationEntryPoint;
 import com.lits.demo.security.JwtAuthenticationTokenFilter;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 import javax.annotation.Resource;
 import java.util.Arrays;
 
@@ -74,12 +70,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/api/login").permitAll()
-                    .antMatchers("/api/users").permitAll()
-                    .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                    .antMatchers("/api/user").hasRole("ADMIN")
-                    .antMatchers("/*/login").permitAll()
-                    .anyRequest().authenticated();
+                .antMatchers("/api/**").permitAll()
+                .antMatchers("/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html", "/swagger-resources/configuration/security").permitAll()
+//        "/v2/api-docs",
+
+//                    .antMatchers("/api/login").permitAll()
+//                    .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+//                    .antMatchers("/api/user").hasRole("ADMIN")
+//                    .antMatchers("/api/login").permitAll()
+//                    .antMatchers("/swagger-ui.html").permitAll()
+//                    .antMatchers("/**swagger**").permitAll()
+                .anyRequest().authenticated();
+//                    .anyRequest().anonymous();
 
         httpSecurity
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

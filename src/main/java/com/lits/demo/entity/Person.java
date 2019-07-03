@@ -3,6 +3,7 @@ package com.lits.demo.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table (name = "person")
@@ -15,7 +16,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
-    private String username;
+    private String personName;
     private Integer age;
     private boolean dead;
 }
