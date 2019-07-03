@@ -74,12 +74,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/api/login").permitAll()
-                    .antMatchers("/api/users").permitAll()
+                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html", "/swagger-resources/configuration/security").permitAll()
+                .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/users").permitAll()
 //                    .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                    .antMatchers("/api/user").hasRole("ADMIN")
+                .antMatchers("/api/user").hasRole("ADMIN")
 //                    .antMatchers("/*/login").permitAll()
-                    .anyRequest().authenticated();
+                .anyRequest().authenticated();
 
         httpSecurity
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

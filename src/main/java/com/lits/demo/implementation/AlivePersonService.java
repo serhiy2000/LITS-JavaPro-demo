@@ -5,6 +5,7 @@ import com.lits.demo.entity.Person;
 import com.lits.demo.repository.PersonDataRepository;
 import com.lits.demo.service.PersonService;
 import com.lits.demo.mapper.PersonMapper;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Service ("alive")
 @Slf4j
+@Data
 
 public class AlivePersonService implements PersonService {
 
