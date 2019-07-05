@@ -30,20 +30,7 @@ public class DemoApplication implements ApplicationRunner { //extends Applicatio
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-//	public DemoApplication() { // this is for swagger. I'll try springfox instead.
-//		BeanConfig beanConfig = new BeanConfig();
-//		beanConfig.setVersion("1.0.0");
-//		beanConfig.setBasePath("/api");
-//		beanConfig.setResourcePackage("org.jazzteam");
-//		beanConfig.setScan(true);
-//	}
-//	@Override
-//	public Set<Class<?>> getClasses() {
-//		Set<Class<?>> resources = new HashSet();
-//		resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
-//		resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
-//		return resources;
-//	}
+
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		User user = new User();

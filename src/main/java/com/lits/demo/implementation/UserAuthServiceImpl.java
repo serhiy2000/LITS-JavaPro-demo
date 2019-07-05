@@ -38,4 +38,9 @@ public class UserAuthServiceImpl implements UserAuthService {
         System.out.println("message from authServiceImpl");
         return tokenService.createToken(user.getId());
     }
+
+    @Override
+    public User save(User user) {
+        return userDataRepository.save(user);
+    }
 }

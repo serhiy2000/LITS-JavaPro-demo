@@ -1,6 +1,8 @@
 package com.lits.demo.controller;
 
+import com.lits.demo.implementation.UserServiceImpl;
 import com.lits.demo.model.User;
+import com.lits.demo.repository.UserDataRepository;
 import com.lits.demo.service.UserAuthService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class UserAuthController {
     private UserAuthService userAuthService;
 
     @Autowired
+    UserDataRepository userDataRepository;
+
+    @Autowired
     public UserAuthController(UserAuthService userAuthService){
         this.userAuthService = userAuthService;
     }
@@ -25,18 +30,17 @@ public class UserAuthController {
     @PostMapping(value = "/login")
     @ApiOperation("auth")
     public ResponseEntity<?> auth(@RequestBody User user){
-
         System.out.println("user.getUsername() from UserAuthController (the same as in POST command): "+user.getUsername()); // here works. userName = is the same as in POST request
-
         return ResponseEntity.ok(userAuthService.auth(user.getUsername(), user.getPassword()));
     }
 
-//
-//    @PostMapping
-//    public User savePerson (@RequestBody User user){
-//
-//        return UserServiceImpl.save(user);
-//    }
+
+    @PostMapping(value = "/saveUser")
+    @ApiOperation("saveUser")
+    public User save (@RequestBody User user){
+        userDataRepository.save(user);
+        return user;
+    }
 //}
 //
 //@RequestMapping (value = "/api/users")
