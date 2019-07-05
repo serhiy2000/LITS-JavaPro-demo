@@ -42,7 +42,7 @@ public class AlivePersonServiceTest {
     public void shouldGetPerson(){
         Person person = new Person();
         when(personDataRepositoryMock.findOneById(1)).thenReturn(person);
-        alivePersonService.getById(1);
+        alivePersonService.findOneById(1);
         verify(personDataRepositoryMock).findOneById(1);
 
     }

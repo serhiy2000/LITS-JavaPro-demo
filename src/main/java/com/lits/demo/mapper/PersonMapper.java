@@ -11,7 +11,7 @@ public class PersonMapper {
 
     public Person toEntity(PersonDto personDto) {
         Person person = new Person();
-        person.setUsername(personDto.getUsername());
+        person.setPersonName(personDto.getPersonName());
         person.setAge(personDto.getAge());
         person.setId(personDto.getId());
         person.setDead(personDto.isDead());
@@ -20,7 +20,7 @@ public class PersonMapper {
 
     public PersonDto toDto(Person person) {
         PersonDto personDto = new PersonDto();
-        personDto.setUsername(person.getUsername());
+        personDto.setPersonName(person.getPersonName());
         personDto.setAge(person.getAge());
         personDto.setId(person.getId());
         personDto.setDead(person.isDead());

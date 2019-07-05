@@ -9,13 +9,15 @@ import javax.persistence.*;
 //@ToString(exclude = {"id" , "age" , "dead"})
 //@EqualsAndHashCode(exclude = {"id"})
 @Data
-//@Builder - цей елеметент ломбоку створює пустий конструктор
+//@Builder
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
-    private String username;
+    private String personName;
     private Integer age;
     private boolean dead;
+
+
 }

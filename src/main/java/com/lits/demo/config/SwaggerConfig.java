@@ -1,24 +1,14 @@
 package com.lits.demo.config;
 
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.util.StopWatch;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 //import static springfox.documentation.builders.PathSelectors.regex;
 

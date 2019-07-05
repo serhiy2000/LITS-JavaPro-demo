@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface PersonService {
 
-    PersonDto getById (Integer Id);
+    PersonDto findOneById (Integer Id);
 
-    List<Person> getAllPersons();
+    List<PersonDto> getAllPersons();
 
     PersonDto save (PersonDto personDto);
 }

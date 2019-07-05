@@ -6,7 +6,9 @@ import com.lits.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
+import javax.management.modelmbean.ModelMBeanOperationInfo;
 import java.util.List;
 
 @RestController
@@ -23,28 +25,20 @@ public class PersonController {
 
     @GetMapping (value = "/user")
     public List<PersonDto> getAllPersons (){
-        return null;
-//        alivePersonService.getAllPersons();
+        return alivePersonService.getAllPersons();
     }
-//
-//    @GetMapping (value = "/user?id")
-//    public PersonDto getPersonById (@RequestParam Integer id){
-//        return alivePersonService.getById(id);
-//    }
 
     @GetMapping(value = "/user/{id}")
-    public PersonDto getPersonById(@PathVariable Integer id) {
-        return alivePersonService.getById(id);
+    public PersonDto findOneById (@PathVariable Integer id) {
+        return alivePersonService.findOneById(id);
     }
 
     @PostMapping
     public PersonDto savePerson (@RequestBody PersonDto person){
-
-//        Person person = Person.builder()   -   тут описано як працює lombok builder!
+//        Person person = Person.builder()   -   тут описано як працює lombok builder! для створення нових обєктів для БД
 //                .age(12)
 //                .username("serfgf")
 //                .dead(false);
-
         return alivePersonService.save(person);
     }
 
