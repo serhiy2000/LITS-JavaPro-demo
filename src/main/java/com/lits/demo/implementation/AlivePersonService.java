@@ -32,15 +32,13 @@ public class AlivePersonService implements PersonService {
     }
 
     @Override
-    public List<PersonDto> getAllPersons () {
-        Iterable<Person> personIterable = personDataRepository.findAll();
-        List <PersonDto> personDtoList = new ArrayList<>();
-        Iterator<Person> iterator = personIterable.iterator();
-        while (iterator.hasNext()){
-            Person iteratorNext = iterator.next();
+        public List<PersonDto> getAllPersons () {
+            Iterable<Person> personIterable = personDataRepository.findAll();
+            List <PersonDto> personDtoList = new ArrayList<>();
+        for (Person iteratorNext : personIterable) {
             personDtoList.add(personMapper.toDto(iteratorNext));
         }
-        return personDtoList;
+            return personDtoList;
     }
 
 //        if () {    - тут написано як працює логер від лобмоку

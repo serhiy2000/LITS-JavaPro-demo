@@ -1,7 +1,7 @@
 package com.lits.demo;
 
 import com.lits.demo.entity.Person;
-import com.lits.demo.model.User;
+import com.lits.demo.entity.User;
 import com.lits.demo.repository.PersonDataRepository;
 import com.lits.demo.repository.UserDataRepository;
 
@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-@Builder
+//@Builder
 public class DemoApplication implements ApplicationRunner { //extends Application
 
 	@Autowired
@@ -33,12 +33,26 @@ public class DemoApplication implements ApplicationRunner { //extends Applicatio
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		Person person = new Person();
+		person.setPersonName("John");
+		person.setAge(17);
+		personDataRepository.save(person);
+
 		User user = new User();
 		user.setUsername("loco");
 //		user.setPassword("$2a$10$xIqXZRbKo96Y/h1uZa1eAuo53cNHIJffo5lqLsnLdhzfSpVB/XPoq");
 		user.setPassword(passwordEncoder.encode("123"));
 		user.setRole("ADMIN");
 		userDataRepository.save(user);
+
+		// initial table Person fillment:
+
+
+
+		Person person2 = new Person();
+		person2.setPersonName("Jack Sparrow");
+		person2.setAge(15);
+		personDataRepository.save(person2);
 
 
 //		Person.builder().age(12).personName("serfgf").dead(false); // тут білдер не хотів ніяк працювати. вилазять конфлікти із конструкторами у personmapper!

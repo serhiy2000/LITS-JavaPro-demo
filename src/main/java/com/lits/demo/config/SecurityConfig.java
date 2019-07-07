@@ -16,9 +16,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -65,29 +68,50 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+//        () -> httpSecurity
         httpSecurity
-                    .cors()
+                .cors()
                 .and()
-                    .csrf().disable()
-                    .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+                .csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                    .authorizeRequests()
+                .authorizeRequests()
+                    .antMatchers("/**").permitAll() // поки що включено будь-який доступ до всіх ресурсів.
+                //                .antMatchers("/api/login").permitAll()
+                //                .antMatchers("/api/users").permitAll()
+                //                .antMatchers("/api/user").hasRole("ADMIN")
+                //                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
 //                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html", "/swagger-resources/configuration/security").permitAll()
-//                .antMatchers("/api/login").permitAll()
-//                .antMatchers("/api/users").permitAll()
-//                .antMatchers("/api/user").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated();
+                    .anyRequest().authenticated()
+                .and()
+                    .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
+                .and()
+                    .logout()
+                    .permitAll();
 
         httpSecurity
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-
         httpSecurity.headers().cacheControl();
     }
 
+    // this Bean is from manual. Before I injected it here- everything worked good.
+    @Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+        UserDetails user =
+                User.withDefaultPasswordEncoder()
+                        .username("u")
+                        .password("p")
+                        .roles("USER")
+                        .build();
+
+        return new InMemoryUserDetailsManager(user);
+
+    }
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();

@@ -12,12 +12,17 @@ import javax.persistence.*;
 //@Builder
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
+        private Integer id;
 
-    private Integer id;
+    @Column(name = "personName", nullable = false)
     private String personName;
-    private Integer age;
-    private boolean dead;
 
+    @Column(name = "age", nullable = false)
+    private Integer age;
+
+    @Column(name = "dead")
+    private boolean dead;
 
 }

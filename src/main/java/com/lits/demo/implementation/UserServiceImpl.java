@@ -1,6 +1,6 @@
 package com.lits.demo.implementation;
 
-import com.lits.demo.model.User;
+import com.lits.demo.entity.User;
 import com.lits.demo.repository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

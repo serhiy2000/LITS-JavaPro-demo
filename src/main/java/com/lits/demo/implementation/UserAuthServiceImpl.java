@@ -1,6 +1,6 @@
 package com.lits.demo.implementation;
 
-import com.lits.demo.model.User;
+import com.lits.demo.entity.User;
 import com.lits.demo.repository.UserDataRepository;
 import com.lits.demo.service.UserAuthService;
 import com.lits.demo.service.TokenService;

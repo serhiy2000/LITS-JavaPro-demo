@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Spring MAIN Example</title>
-</head>
+<head></head>
 <body>
-<h1>Welcome!</h1>
-<div>{{some}}</div>
+    <div>
+
+<!--    <title>Spring MAIN.mustache</title>-->
+    <form action="/logout" method="post">
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}">-->
+        <input type="submit" value="Sign Out"/>
+    </form>
+    </div>
+    <div>
+        <form method="post">
+        <input type="text" name="personNameWebForm" placeholder="Person name">
+        <input type="text" name="ageWebForm" placeholder="Age">
+        <button type="submit">Add person</button>
+<!--            <input type="hidden" name="_csrf" value="{{_csrf.token}}">-->
+        </form>
+    </div>
+    <br>
+    <div>
+        <form method="post" action="filter">
+        <input type="text" name="filter" >
+        <button type="submit">Find person</button>
+<!--            <input type="hidden" name="_csrf" value="{{_csrf.token}}">-->
+        </form>
+    </div>
+<br>
+    <div>List of persons from personRepository:</div>
+    <br>
+    {{#person}}
+            <div>
+                <b>id: {{id}};</b>
+                <span>personName = {{personName}};</span>
+                <i>age: {{age}}; </i>
+                dead={{dead}}
+                <br>
+            </div>
+    {{/person}}
+
 </body>
 </html>
