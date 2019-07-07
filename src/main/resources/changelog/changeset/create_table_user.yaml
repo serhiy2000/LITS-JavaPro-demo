@@ -4,7 +4,7 @@ databaseChangeLog:
       author: loco
       changes:
         - createTable:
-            tableName: user
+            tableName: user_db
             columns:
               - column:
                   name: id

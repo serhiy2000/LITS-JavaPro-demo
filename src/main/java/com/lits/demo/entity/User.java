@@ -3,9 +3,10 @@ package com.lits.demo.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_db")
 @Data
 public class User {
 
@@ -22,5 +23,11 @@ public class User {
 
         @Column(name = "role")
         private String role;
+
+        @ElementCollection(targetClass = Role.class, fetch = FetchType.LAZY)
+        @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+        @Enumerated(EnumType.STRING)
+        private Set<Role> roles;
+
 
 }
