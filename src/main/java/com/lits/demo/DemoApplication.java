@@ -1,6 +1,7 @@
 package com.lits.demo;
 
 import com.lits.demo.entity.Person;
+import com.lits.demo.entity.Role;
 import com.lits.demo.entity.User;
 import com.lits.demo.repository.PersonDataRepository;
 import com.lits.demo.repository.UserDataRepository;
@@ -12,6 +13,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Collections;
 
 @SpringBootApplication
 //@Builder
@@ -33,27 +36,33 @@ public class DemoApplication implements ApplicationRunner { //extends Applicatio
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		Person person = new Person();
-		person.setPersonName("John");
-		person.setAge(17);
-		personDataRepository.save(person);
 
-		User user = new User();
-		user.setUsername("loco");
+        User user = new User();
+        user.setUsername("loco");
 //		user.setPassword("$2a$10$xIqXZRbKo96Y/h1uZa1eAuo53cNHIJffo5lqLsnLdhzfSpVB/XPoq");
-		user.setPassword(passwordEncoder.encode("123"));
-		user.setRole("ADMIN");
-		userDataRepository.save(user);
+        user.setPassword(passwordEncoder.encode("123"));
+        user.setRoles(Collections.singleton(Role.USER));
+        userDataRepository.save(user);
+
+        User u = new User();
+        u.setUsername("u");
+//		user.setPassword("$2a$10$xIqXZRbKo96Y/h1uZa1eAuo53cNHIJffo5lqLsnLdhzfSpVB/XPoq");
+        u.setPassword("u");
+        u.setRoles(Collections.singleton(Role.USER));
+        userDataRepository.save(u);
+
+
+        Person person = new Person();
+        person.setPersonName("John");
+        person.setAge(17);
+        personDataRepository.save(person);
 
 		// initial table Person fillment:
-
-
 
 		Person person2 = new Person();
 		person2.setPersonName("Jack Sparrow");
 		person2.setAge(15);
 		personDataRepository.save(person2);
-
 
 //		Person.builder().age(12).personName("serfgf").dead(false); // тут білдер не хотів ніяк працювати. вилазять конфлікти із конструкторами у personmapper!
 

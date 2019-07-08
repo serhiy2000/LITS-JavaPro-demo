@@ -74,12 +74,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/home","/registration", "/login").permitAll() // поки що включено будь-який доступ до всіх ресурсів.
+                    .antMatchers("/registration", "/home").permitAll() // поки що включено будь-який доступ до всіх ресурсів.
                 //                .antMatchers("/api/login").permitAll()
 //                                .antMatchers("/api/users").permitAll()
                 //                .antMatchers("/api/user").hasRole("ADMIN")
                 //                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-//                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html", "/swagger-resources/configuration/security").permitAll()
+                .antMatchers(
+                        "/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources",
+                        "/configuration/security",
+                        "/webjars/**",
+                        "/swagger-ui.html",
+                        "/swagger-resources/configuration/ui",
+                        "/swagger-ui.html",
+                        "/swagger-resources/configuration/security").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
@@ -89,9 +98,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout()
                     .permitAll();
 
-        httpSecurity
-                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-        httpSecurity.headers().cacheControl();
+//        httpSecurity
+//                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+//        httpSecurity.headers().cacheControl(); // поки що виключаю це рядок, бо некоректно працює автентифікація.
     }
 
     @Bean
@@ -121,8 +130,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource) // datasource нужен чтоб менеджер мог ходить в б.д. и искать их роли
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select username, password from user_db where username=?")
-                .authoritiesByUsernameQuery("select u.username, ur.roles from user_db u inner join user_role ur on u.id = where u.id = ur.user_id where u.username=?");
+                .usersByUsernameQuery("select username, password, active from user_db where username=?")
+                .authoritiesByUsernameQuery("select u.username, ur.roles from user_db u inner join user_role ur on u.id = ur.user_id where u.username=?");
     }
-// -
 }

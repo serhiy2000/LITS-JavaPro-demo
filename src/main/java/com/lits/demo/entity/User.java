@@ -11,7 +11,7 @@ import java.util.Set;
 public class User {
 
         @Id
-        @GeneratedValue(strategy= GenerationType.AUTO)
+        @GeneratedValue(strategy= GenerationType.IDENTITY)
         @Column(name = "id", unique = true, nullable = false)
         private Long id;
 
@@ -21,8 +21,8 @@ public class User {
         @Column(name = "password")
         private String password;
 
-        @Column(name = "role")
-        private String role;
+        @Column(name = "active")
+        private  boolean active;
 
         @ElementCollection(targetClass = Role.class, fetch = FetchType.LAZY)
         @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
