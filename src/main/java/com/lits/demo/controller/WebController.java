@@ -9,7 +9,9 @@ import com.lits.demo.repository.PersonDataRepository;
 import com.lits.demo.repository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.Map;
@@ -28,9 +30,9 @@ public class WebController {
     @Autowired
     private UserDataRepository userDataRepository;
 
-    @GetMapping("/home")
-        public String home (){
-        return "home"; // повертає назву сторінки для розширення мусташ. тобто "home" - > home.mustache
+    @GetMapping("/")
+        public String home (Map<String, Object> model){
+        return "index"; // повертає назву сторінки для розширення мусташ. тобто "home" - > index.mustache
     }
 
     @GetMapping("/main")
@@ -80,6 +82,7 @@ public class WebController {
             return "registration";
         }
 
+        user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userDataRepository.save(user);
         return "redirect:/login";

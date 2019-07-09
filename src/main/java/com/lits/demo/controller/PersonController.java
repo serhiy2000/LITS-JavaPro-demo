@@ -1,14 +1,12 @@
 package com.lits.demo.controller;
 
 import com.lits.demo.dtos.PersonDto;
-import com.lits.demo.entity.Person;
 import com.lits.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.ui.Model;
 
-import javax.management.modelmbean.ModelMBeanOperationInfo;
 import java.util.List;
 
 @RestController

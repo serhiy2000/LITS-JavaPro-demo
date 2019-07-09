@@ -30,49 +30,49 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity (prePostEnabled = true)
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity (prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    protected JwtAuthenticationEntryPoint unauthorizedHandler;
+//    @Autowired
+//    protected JwtAuthenticationEntryPoint unauthorizedHandler;
+//
+//    @Resource(name = "userService")
+//    private UserDetailsService userDetailsService;
 
-    @Resource(name = "userService")
-    private UserDetailsService userDetailsService;
+//    @Bean
+//    @Override
+//    public AuthenticationManager authenticationManagerBean() throws Exception {
+//        return super.authenticationManagerBean();
+//    }
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+//    @Autowired
+//    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService)
+//                .passwordEncoder(passwordEncoder());
+//    }
 
-    @Autowired
-    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-        return new JwtAuthenticationTokenFilter();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+//
+//    @Bean
+//    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+//        return new JwtAuthenticationTokenFilter();
+//    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 //        () -> httpSecurity
         httpSecurity
-                .cors()
-                .and()
+//                .cors()
+//                .and()
 //                .csrf().disable() // цих три поля відповідають за csrf запити. з ними не працювало...  В мусташ вони включені. тому це я думаю треба викинути.
 //                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 //                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
                 .authorizeRequests()
                     .antMatchers("/registration", "/home").permitAll() // поки що включено будь-який доступ до всіх ресурсів.
                 //                .antMatchers("/api/login").permitAll()
@@ -103,22 +103,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        httpSecurity.headers().cacheControl(); // поки що виключаю це рядок, бо некоректно працює автентифікація.
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        final CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD",
-                "GET", "POST", "PUT", "DELETE", "PATCH"));
-//         setAllowCredentials(true) is important, otherwise:
-//         The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
-        configuration.setAllowCredentials(true);
-        // setAllowedHeaders is important! Without it, OPTIONS preflight request
-        // will fail with 403 Invalid CORS requestconfiguration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Origin", "X-Requested-With", "Authorization", "Cache-Control", "Content-Type"));
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        final CorsConfiguration configuration = new CorsConfiguration();
+//
+//        configuration.setAllowedOrigins(Arrays.asList("*"));
+//        configuration.setAllowedMethods(Arrays.asList("HEAD",
+//                "GET", "POST", "PUT", "DELETE", "PATCH"));
+////         setAllowCredentials(true) is important, otherwise:
+////         The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
+//        configuration.setAllowCredentials(true);
+//        // setAllowedHeaders is important! Without it, OPTIONS preflight request
+//        // will fail with 403 Invalid CORS requestconfiguration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Origin", "X-Requested-With", "Authorization", "Cache-Control", "Content-Type"));
+//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
 
     // this two Beans are from manual. Before I injected it here- everything worked good. - by loco
 

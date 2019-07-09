@@ -20,8 +20,8 @@ import java.util.Collections;
 //@Builder
 public class DemoApplication implements ApplicationRunner { //extends Application
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	UserDataRepository userDataRepository;
@@ -33,14 +33,15 @@ public class DemoApplication implements ApplicationRunner { //extends Applicatio
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
         User user = new User();
         user.setUsername("loco");
 //		user.setPassword("$2a$10$xIqXZRbKo96Y/h1uZa1eAuo53cNHIJffo5lqLsnLdhzfSpVB/XPoq");
-        user.setPassword(passwordEncoder.encode("123"));
+//      user.setPassword(passwordEncoder.encode("123"));
+        user.setActive(true);
+        user.setPassword("123");
         user.setRoles(Collections.singleton(Role.USER));
         userDataRepository.save(user);
 
@@ -48,9 +49,9 @@ public class DemoApplication implements ApplicationRunner { //extends Applicatio
         u.setUsername("u");
 //		user.setPassword("$2a$10$xIqXZRbKo96Y/h1uZa1eAuo53cNHIJffo5lqLsnLdhzfSpVB/XPoq");
         u.setPassword("u");
+        u.setActive(true);
         u.setRoles(Collections.singleton(Role.USER));
         userDataRepository.save(u);
-
 
         Person person = new Person();
         person.setPersonName("John");
@@ -63,6 +64,11 @@ public class DemoApplication implements ApplicationRunner { //extends Applicatio
 		person2.setPersonName("Jack Sparrow");
 		person2.setAge(15);
 		personDataRepository.save(person2);
+
+        Person person3 = new Person();
+        person3.setPersonName("Jack Sparrow");
+        person3.setAge(15);
+        personDataRepository.save(person3);
 
 //		Person.builder().age(12).personName("serfgf").dead(false); // тут білдер не хотів ніяк працювати. вилазять конфлікти із конструкторами у personmapper!
 
