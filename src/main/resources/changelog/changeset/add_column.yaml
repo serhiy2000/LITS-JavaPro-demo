@@ -1,11 +1,11 @@
 databaseChangeLog:
-  - changeSet:
-      id: 2
-      author: loco
-      changes:
-        - addColumn:
-            tableName: person
-            columns:
-              - column:
-                  name: dead
-                  type: boolean
+                          - changeSet:
+                              id: 2
+                              author: loco
+                              changes:
+                                - addColumn:
+                                    tableName: person
+                                    columns:
+                                      - column:
+                                          name: dead
+                                          type: boolean

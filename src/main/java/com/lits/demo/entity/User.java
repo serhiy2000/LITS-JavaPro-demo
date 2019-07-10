@@ -1,4 +1,4 @@
-package com.lits.demo.model;
+package com.lits.demo.entity;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package com.lits.demo.controller;
 
-import com.lits.demo.model.User;
+import com.lits.demo.entity.User;
 import com.lits.demo.service.UserAuthService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
